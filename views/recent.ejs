@@ -1,0 +1,42 @@
+<%- include('header.ejs') %>
+    <div class="container; margin-left: 80px; margin-right: 80px">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>TITLE</th>
+                    <th>AUTHOR</th>
+                    <th>TEXT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form action="recent/" method="POST">
+                    <% for(let i=0; i < data.length; ++i) { %>
+                        <tr>
+                            <td onclick="accessLinkPaste('<%=  data[i].commbin_id %>')" style="cursor: pointer;">
+                                <%= data[i].title %>
+                            </td>
+                            <td onclick="accessLinkPaste('<%=  data[i].commbin_id %>')" style="cursor: pointer;">
+                                <%= data[i].author %>
+                            </td>
+                            <td onclick="accessLinkPaste('<%=  data[i].commbin_id %>')" style="cursor: pointer;">
+                                <%= data[i].text %>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm rounded-0" data-toggle="tooltip"
+                                    data-placement="top" value="<%=  data[i].commbin_id %>" name="delete" type="submit"
+                                    title="Delete">Delete</button>
+                            </td>
+                        </tr>
+
+                        <% } %>
+                </form>
+            </tbody>
+        </table>
+    </div>
+    </body>
+    <script>
+        function accessLinkPaste(id) {
+            window.location = "http://localhost:4000/pastebin/" + id;
+        }
+    </script>
+    </html>
